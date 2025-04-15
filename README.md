@@ -1,6 +1,6 @@
-# resonate
+# resonance
 
-**resonate** is a web application that allows users to visualize the most popular Spotify songs in different countries. The app uses a 3D globe to represent countries, and users can search for a country to highlight it and see its top tracks in real time.
+**resonance** is a web application that allows users to visualize the most popular Spotify songs in different countries. The app uses a 3D globe to represent countries, and users can search for a country to highlight it and see its top tracks in real time.
 
 ## Features
 
