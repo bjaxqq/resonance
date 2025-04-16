@@ -1,59 +1,76 @@
 # resonance
 
-**resonance** is a web application that allows users to visualize the most popular Spotify songs in different countries. The app uses a 3D globe to represent countries, and users can search for a country to highlight it and see its top tracks in real time.
+Explore the world through music.
 
-## Features
+## About
 
-- **Interactive 3D Globe**: A beautiful 3D visualization of the world using `@react-three/fiber` and `three.js`.
-- **Search for Countries**: Easily search for any country to highlight it on the globe and view its most popular Spotify songs.
-- **Real-time Data**: The app fetches and visualizes the most popular songs from Spotify by country.
-- **Graticule Lines**: Latitude and longitude lines on the globe to give a more accurate geographical context.
+*resonance* is a visualization of global music trends, powered by real-time Last.fm data.  
+It highlights what's currently popular in different parts of the world using an interactive 3D globe.
 
-## Technologies Used
+## API Example
 
-- **React**: For building the user interface.
-- **Vite**: A fast development server for React applications.
-- **@react-three/fiber**: React renderer for Three.js to build the 3D globe.
-- **Three.js**: For rendering 3D geometries (the globe and country outlines).
-- **D3.js**: For handling geographical data and rendering the graticule.
-- **Spotify API**: For fetching the most popular songs in each country.
+Data is retrieved from the Last.fm API based on the selected country.
 
-## Local Setup
+```js
+fetch(`https://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${country}&api_key=YOUR_API_KEY&format=json`)
+  .then(res => res.json())
+  .then(data => {
+    const tracks = data.tracks.track;
+    setTopTracks(tracks);
+  });
+```
 
-1. Clone the repository:
-
-   ```bash
-   git clone <repository-url>
-   cd <repository-folder>
-   ```
-
-2. Install dependencies:
-
-    ```bash
-    npm install
-    ```
-
-3. Set up environment variables
-
-    You'll need to create a `.env` file to store your Spotify API credentials. Example:
-
-    ```ini
-    VITE_SPOTIFY_CLIENT_ID=your_spotify_client_id
-    VITE_SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
-    ```
-
-4. Run the development server:
-
-    ```bash
-    npm run dev
-    ```
-
-5. Open the application in your browser at `http://localhost:3000`.
+Each response includes metadata like track name, artist, rank, and cover image.
+This data populates the sidebar when a country is selected.
 
 ## Usage
 
-- **Search for Countries**: Type the name of any country in the search bar to highlight that country on the globe.
-- **Explore Popular Tracks**: When you highlight a country, the app fetches and displays the most popular Spotify tracks from that country.
+- Search a country to view its top tracks.
+- Click the globe to rotate and explore different regions.
+- Click “docs” again to return to the main view.
+
+## Local Development/Testing
+
+### Prerequisites
+- Node.js
+- npm or yarn
+- Last.fm API key (get one from https://www.last.fm/api)
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/bjaxqq/resonance.git
+cd resonance
+```
+
+2. Create a `.env` file in the root directory:
+```bash
+echo "REACT_APP_LASTFM_API_KEY=your_api_key_here" > .env
+```
+
+3. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+4. Start the development server:
+
+```bash
+npm start
+# or
+yarn start
+```
+
+The application will open in your default browser at `http://localhost:5173`. If it doesn't then use the link in the terminal output.
+
+## Tech Stack
+
+[CSS](https://developer.mozilla.org/en-US/docs/Web/CSS), [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML), [JavaScript](https://www.javascript.com/), [React](https://react.dev/), [React Three Fiber](https://docs.pmnd.rs/react-three-fiber), [Three.js](https://threejs.org/)
 
 ## License
 
